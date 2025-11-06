@@ -1,0 +1,58 @@
+(A)
+PROGRAM : 
+#include <stdio.h> 
+#include <math.h> 
+int countDigitsInFactorial(int n); 
+int main() { 
+    int n; 
+    printf("Enter a positive integer: "); 
+    scanf("%d", &n); 
+    int count = countDigitsInFactorial(n); 
+    printf("Number of digits in %d! = %d\n", n, count); 
+    return 0; 
+} 
+int countDigitsInFactorial(int n) { 
+    if (n < 0) { 
+        return 0; 
+    } 
+    if (n <= 1) { 
+        return 1; 
+    } 
+    double digits = 0; 
+    for (int i = 2; i <= n; i++) { 
+        digits += log10(i); 
+    } 
+ 
+    return (int) floor(digits) + 1; 
+} 
+ 
+OUTPUT : 
+Enter a positive integer: 5 
+Number of digits in 5! = 3
+
+(B)
+PROGRAM : 
+ 
+#include <stdio.h> 
+#define MOD 1000000007 
+int fibonacciSum(int n) { 
+    int prev = 0, curr = 1, next, sum = 0, i; 
+    for (i = 0; i <= n; i++) { 
+        sum = (sum + curr) % MOD; 
+        next = (prev + curr) % MOD; 
+        prev = curr; 
+        curr = next; 
+    } 
+    return sum; 
+} 
+int main() { 
+    int N; 
+scanf("%d", &N); 
+printf("%d\n", fibonacciSum(N)); 
+return 0; 
+} 
+
+OUTPUT : 
+Input: 
+5 
+Output:
