@@ -1,0 +1,68 @@
+(A)
+PROGRAM : 
+#include <stdio.h> 
+#include <math.h> 
+int main() { 
+int x1, y1, x2, y2; 
+double distance; 
+printf("Enter x1 and y1: "); 
+scanf("%d %d", &x1, &y1); 
+printf("Enter x2 and y2: "); 
+scanf("%d %d", &x2, &y2); 
+distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)); 
+printf("The Euclidean distance between (%d, %d) and (%d, %d) is %lf\n",  
+x1, y1, x2, y2, distance); 
+return 0; 
+} 
+
+OUTPUT : 
+INPUT : 
+Enter x1 and y1: 3 4 
+Enter x2 and y2: 7 1 
+OUTPUT : 
+The Euclidean distance between (3, 4) and (7, 1) is 5.000000
+
+B) 
+PROGRAM : 
+#include <stdio.h> 
+int gcd(int a, int b) { 
+    while (b != 0) { 
+        int temp = b; 
+        b = a % b; 
+        a = temp; 
+    } 
+    return a; 
+} 
+int main() { 
+    int n, k; 
+    scanf("%d %d", &n, &k); 
+    int arr[n]; 
+    for (int i = 0; i < n; i++) { 
+        scanf("%d", &arr[i]); 
+    } 
+    int maxLength = 0; 
+    for (int i = 0; i < n; i++) { 
+        if (arr[i] < k) continue; 
+        int currentGcd = arr[i]; 
+        int length = 1; 
+        for (int j = i + 1; j < n; j++) { 
+            currentGcd = gcd(currentGcd, arr[j]); 
+            if (currentGcd < k) break; 
+            length++; 
+        } 
+ 
+        if (length > maxLength) { 
+            maxLength = length; 
+        } 
+    } 
+ 
+    printf("%d\n", maxLength); 
+    return 0; 
+} 
+ 
+OUTPUT : 
+INPUT : 
+5 3 
+6 9 12 2 3 
+OUTPUT : 
+3 
