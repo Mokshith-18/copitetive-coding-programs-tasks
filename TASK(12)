@@ -1,0 +1,94 @@
+(A)
+PROGRAM : 
+#include <stdio.h> 
+int main() { 
+    int n, i, j, max, second_max, count = 0; 
+    scanf("%d", &n); 
+    int arr[n]; 
+    for (i = 0; i < n; i++) { 
+        scanf("%d", &arr[i]); 
+    } 
+    for (i = 0; i < n; i++) { 
+        max = arr[i]; 
+        second_max = -1; 
+        for (j = i + 1; j < n; j++) { 
+            if (arr[j] > max) { 
+                second_max = max; 
+                max = arr[j]; 
+            } else if (arr[j] > second_max) { 
+                second_max = arr[j]; 
+            } 
+            if (second_max != -1 && arr[i] == second_max) { 
+                count++; 
+                break; 
+            } 
+        } 
+    } 
+    printf("%d", count); 
+    return 0; 
+} 
+OUTPUT : 
+5 
+1 3 2 5 4 
+2 
+ 
+ 
+ 
+B) 
+PROGRAM : 
+#include <stdio.h> 
+#include <stdlib.h> 
+int main() { 
+    int T, n, i, j, k, sum, size; 
+    scanf("%d", &T); 
+    while (T--) { 
+        scanf("%d", &n); 
+        size = (n * (n + 1)) / 2; 
+        int *arr = (int*) malloc(sizeof(int) * size); 
+        for (i = 0; i < size; i++) { 
+            scanf("%d", &arr[i]); 
+        } 
+        sum = 0; 
+        k = 0; 
+        for (i = 1; i <= n; i++) { 
+            if (i % 2 != 0) { 
+                for (j = 0; j < i; j++) { 
+                    int max = j; 
+                    for (int l = j + 1; l < i; l++) { 
+                        if (arr[l + k] > arr[max + k]) { 
+                            max = l; 
+                        } 
+                    } 
+                    int temp = arr[j + k]; 
+                    arr[j + k] = arr[max + k]; 
+                    arr[max + k] = temp; 
+                } 
+                sum += arr[k]; 
+                k++; 
+            } else { 
+                for (j = 0; j < i; j++) { 
+                    int min = j; 
+                    for (int l = j + 1; l < i; l++) { 
+                        if (arr[l + k] < arr[min + k]) { 
+                            min = l; 
+                        } 
+                    } 
+                    int temp = arr[j + k]; 
+                    arr[j + k] = arr[min + k]; 
+                    arr[min + k] = temp; 
+                } 
+                sum += arr[k]; 
+                k += i; 
+            } 
+        } 
+        printf("%d\n", sum); 
+        free(arr); 
+    } 
+    return 0; 
+} 
+ 
+OUTPUT : 
+1 
+3 
+1 2 3 4 5 6 
+5 
