@@ -1,0 +1,84 @@
+(A)
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char sentence[100];
+    char replace_char;
+
+    printf("Enter a sentence: ");
+    fgets(sentence, 100, stdin);
+
+    printf("Enter a character to replace: ");
+    replace_char = getchar();
+    if (replace_char == '\n') {
+        replace_char = getchar();
+    }
+
+    for (int i = 0; i < strlen(sentence); i++) {
+        if (sentence[i] == replace_char) {
+            sentence[i] = '#';
+        }
+    }
+
+    printf("Modified sentence: %s", sentence);
+
+    return 0;
+}
+
+OUTPUT:
+Enter a sentence: mokshith
+Enter a character to replace: sunny
+Modified sentence: mok#hith
+
+
+=== Code Execution Successful ===
+
+(B)
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    srand(time(0));
+    int randomNumber = rand() % 100 + 1;
+    int guess;
+
+    do {
+        printf("Guess the number between 1 and 100: ");
+        scanf("%d", &guess);
+
+        if (guess > randomNumber) {
+            printf("Too high, try again.\n");
+        } else if (guess < randomNumber) {
+            printf("Too low, try again.\n");
+        }
+    } while (guess != randomNumber);
+
+    printf("Congratulations! You guessed the number %d.\n", randomNumber);
+
+    return 0;
+}
+
+OUTPUT:
+Guess the number between 1 and 100: 10
+Too low, try again.
+Guess the number between 1 and 100: 80
+Too high, try again.
+Guess the number between 1 and 100: 70
+Too high, try again.
+Guess the number between 1 and 100: 77
+Too high, try again.
+Guess the number between 1 and 100: 75
+Too high, try again.
+Guess the number between 1 and 100: 66
+Too high, try again.
+Guess the number between 1 and 100: 60
+Too high, try again.
+Guess the number between 1 and 100: 55
+Too high, try again.
+Guess the number between 1 and 100: 50
+Congratulations! You guessed the number 50.
+
+
+=== Code Execution Successful ===
